@@ -2,11 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-var Clickbait = require('../models/Images.js');
+var Images = require('../models/Images.js');
 
-/* GET users listing. */
+// GET images
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+	Images.find(function(err, images) {
+		if(err) {
+			return next(err);
+		}
+		res.json(images);
+	});
 });
 
 module.exports = router;
