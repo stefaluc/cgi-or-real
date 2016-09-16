@@ -3,14 +3,24 @@
 <head>
 	<title>CGI or Real?</title>
 
-	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-	<script src="js/main.js"></script>
-
 	<link rel="stylesheet" href="stylesheets/style.css"></link>
 </head>
 <body ng-app = "myApp">
+
+
 	<div class="container">
-		
+		<div ng-controller="MainCtrl">
+			<img ng-src={{random.src}} width='200px' height='200px'></img>
+		</div>
+
+		<a href="#cgi">cgi</a>
+		<a href="#real">real</a>
+		<div ng-view></div>
 	</div>
+
+	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+	<script src="js/main.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 </body>
 </html>
