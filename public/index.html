@@ -5,22 +5,19 @@
 
 	<link rel="stylesheet" href="stylesheets/style.css"></link>
 </head>
-<body ng-app = "myApp">
+<body>
 
 
-	<div class="container">
-		<div ng-controller="MainCtrl">
-			<img ng-src={{random.src}} width='200px' height='200px'></img>
-		</div>
-
-		<a href="#cgi">cgi</a>
-		<a href="#real">real</a>
-		<div ng-view></div>
+	<div id="container">
+		
 	</div>
 
-	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
 	<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
-	<script src="js/main.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+	<script type="text/babel" src="js/main.js"></script>
+	<script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+	<script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/4.0.0-0/react-router.js"></script>
 </body>
 </html>

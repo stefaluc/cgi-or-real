@@ -1,29 +1,65 @@
-var app = angular.module('myApp', ["ngRoute"]);
+var images = [
+	{src: 'images/00.jpg', answer: 'real'},
+	{src: 'images/01.jpg', answer: 'cgi'}
+];
 
-app.config(function($routeProvider) {
-	$routeProvider
-	.when("/cgi", {
-		template: function(params) {console.log(); return '<h1 class="red">Bananas</h1>';}
-	})
-	.when("/real", {
-		template: function(params) {return 'Pears';}
-	});
+var container = document.getElementById('container');
+
+var Main = React.createClass({
+	getImage: function() {
+		return images[Math.floor((Math.random() * 2))];
+	},
+
+	render: function() {
+		var image = this.getImage();
+		return (
+			<span>
+				<img src={image.src} width="200px" height="200px"></img>
+				<br />
+				<Real answer={image}/>
+				<br />
+				<Cgi answer={image}/>
+			</span>
+		);
+	}
 });
 
-app.controller('MainCtrl', function($scope) {
-	var images = [
-		{src: 'images/00.jpg', answer: 'real'},
-		{src: 'images/01.jpg', answer: 'cgi'}
-	];
-	$scope.random = images[Math.floor((Math.random() * 2))];
+var Real = React.createClass({
+	isCorrect: function() {
+		console.log(this.props.answer.answer);
+		if(this.props.answer.answer == 'real') {
+			return 'correct';
+		} else {
+			return 'incorrect';
+		}
+	},
 
-	app.config(function($routeProvider) {
-		$routeProvider
-		.when("/cgi", {
-			template: function(params) {return $scope.random;}
-		})
-		.when("/real", {
-			template: function(params) {return 'Pears';}
-		});
-	});
+	render: function() {
+		return(
+			<span>
+				{this.isCorrect()}
+			</span>
+		);
+	}
 });
+
+var Cgi = React.createClass({
+	isCorrect: function() {
+		console.log(this.props.answer.answer);
+		if(this.props.answer.answer == 'cgi') {
+			return 'correct';
+		} else {
+			return 'incorrect';
+		}
+	},
+
+	render: function() {
+		return(
+			<span>
+				{this.isCorrect()}
+			</span>
+		);
+	}
+});
+
+ReactDOM.render(<Main />, container);
