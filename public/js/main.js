@@ -6,59 +6,83 @@ var images = [
 var container = document.getElementById('container');
 
 var Main = React.createClass({
+	getInitialState: function() {
+		return {
+			progression: 0, 
+			score: 0
+		};
+	},
+
+	resetProgression: function() {
+		this.setState({
+			progression: 0,
+			score: 0
+		});
+	},
+
+	updateProgression: function() {
+		this.setState({
+			progression: this.state.progression + 1
+		});
+	},
+
+	updateScore: function() {
+		this.setState({
+			progression: this.state.progression + 1,
+ 			score: this.state.score + 1
+		});
+	},
+
 	getImage: function() {
 		return images[Math.floor((Math.random() * 2))];
 	},
 
 	render: function() {
-		var image = this.getImage();
-		return (
-			<span>
-				<img src={image.src} width="200px" height="200px"></img>
-				<br />
-				<Real answer={image}/>
-				<br />
-				<Cgi answer={image}/>
-			</span>
-		);
-	}
-});
+		var components;
+		var state = this.state.progression;
+		var score = this.state.score;
 
-var Real = React.createClass({
-	isCorrect: function() {
-		console.log(this.props.answer.answer);
-		if(this.props.answer.answer == 'real') {
-			return 'correct';
-		} else {
-			return 'incorrect';
+		// starting screen
+		if(state === 0) {
+			components = (
+				<div>
+					<h1>Welcome!</h1>
+					<button onClick={this.updateProgression}>Start</button>
+				</div>
+			);
 		}
-	},
+		// game screen
+		else if(state > 0 && state < 11) {
+			console.log('Progression: ' + this.state.progression);
+			console.log('Score: ' + this.state.score);
+			var image = this.getImage();
+			var cgiCorrect = (image.answer == 'cgi') ? true : false;
+			var realCorrect = (image.answer == 'real') ? true : false;
 
-	render: function() {
-		return(
-			<span>
-				{this.isCorrect()}
-			</span>
-		);
-	}
-});
-
-var Cgi = React.createClass({
-	isCorrect: function() {
-		console.log(this.props.answer.answer);
-		if(this.props.answer.answer == 'cgi') {
-			return 'correct';
-		} else {
-			return 'incorrect';
+			components = (
+				<div>
+					<img src={image.src} height='200px' width='200px'></img>
+					<br />
+					<button onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</button>
+					<button onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</button>
+					<br />
+					Image Answer: {image.answer}
+					<br />
+					Score: {score}
+					<br />
+					Progression: {state}
+				</div>
+			);
 		}
-	},
-
-	render: function() {
-		return(
-			<span>
-				{this.isCorrect()}
-			</span>
-		);
+		// ending screen
+		else {
+			components = (
+				<div>
+					<button onClick={this.resetProgression}>Restart</button>
+				</div>
+			);
+		}
+		return components;
 	}
 });
 
