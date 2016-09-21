@@ -62,7 +62,7 @@ var Main = React.createClass({
  			score: this.state.score + 1
 		});
 	},
-	
+
 	getImage: function() {
 		shuffle(this.state.images);
 		return this.state.images.pop();
@@ -79,7 +79,7 @@ var Main = React.createClass({
 			console.log(imageDisplay);
 			components = (
 				<div>
-					<h1>Welcome!</h1>
+					<h1 className="animated bounceIn">CGI or Real?</h1>
 					<button onClick={this.updateProgression}>Start</button>
 				</div>
 			);
@@ -101,7 +101,7 @@ var Main = React.createClass({
 					<br />
 					Image Answer: {image.answer}
 					<br />
-					Score: {score}
+					<span id="score">Score: {score}</span>
 					<br />
 					Progression: {state}
 				</div>
