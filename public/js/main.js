@@ -80,7 +80,7 @@ var Main = React.createClass({
 			components = (
 				<div>
 					<h1 className="animated bounceIn">CGI or Real?</h1>
-					<button onClick={this.updateProgression}>Start</button>
+                    <a className="waves-effect waves-light btn-large animated bounceIn" onClick={this.updateProgression}>Start</a>
 				</div>
 			);
 		}
@@ -96,8 +96,8 @@ var Main = React.createClass({
 				<div>
 					<img src={image.src} height='200px' width='200px'></img>
 					<br />
-					<button onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</button>
-					<button onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</button>
+					<div className="waves-effect waves-light btn" onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</div>
+					<div className="waves-effect waves-light btn" onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</div>
 					<br />
 					Image Answer: {image.answer}
 					<br />
