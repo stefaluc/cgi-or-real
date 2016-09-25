@@ -4,8 +4,25 @@ var imageDisplay = [
 	{src: 'images/02.jpg', answer: 'cgi'},
 	{src: 'images/03.jpg', answer: 'cgi'},
 	{src: 'images/04.jpg', answer: 'cgi'},
-	{src: 'images/05.jpg', answer: 'real'}
+	{src: 'images/05.jpg', answer: 'real'},
+	{src: 'images/06.jpg', answer: 'real'},
+	{src: 'images/07.jpg', answer: 'real'},
+	{src: 'images/08.jpg', answer: 'real'},
+	{src: 'images/09.jpg', answer: 'real'},
+	{src: 'images/10.jpg', answer: 'real'},
+	{src: 'images/11.jpg', answer: 'cgi'},
+	{src: 'images/12.jpg', answer: 'cgi'},
+	{src: 'images/13.jpg', answer: 'cgi'},
+	{src: 'images/14.jpg', answer: 'cgi'},
+	{src: 'images/15.jpg', answer: 'cgi'},
+	{src: 'images/16.jpg', answer: 'cgi'},
+	{src: 'images/17.jpg', answer: 'real'},
+	{src: 'images/18.jpg', answer: 'real'},
+	{src: 'images/19.jpg', answer: 'real'},
+	{src: 'images/20.jpg', answer: 'real'}
 ];
+
+var scoreClass = 'score';
 
 function shuffle(array) {
 	let counter = array.length;
@@ -43,6 +60,7 @@ var Main = React.createClass({
 		for(var i = 0; i < imageDisplay.length; i++) {
 			temp.push(imageDisplay[i]);
 		}
+		scoreClass = 'score';
 		this.setState({
 			progression: 0,
 			score: 0,
@@ -51,12 +69,16 @@ var Main = React.createClass({
 	},
 
 	updateProgression: function() {
+		if(this.state.progression > 0 && this.state.progression < 11) {
+			scoreClass = 'incorrect';
+		}
 		this.setState({
 			progression: this.state.progression + 1
 		});
 	},
 
 	updateScore: function() {
+		scoreClass = 'correct';
 		this.setState({
 			progression: this.state.progression + 1,
  			score: this.state.score + 1
@@ -79,31 +101,30 @@ var Main = React.createClass({
 			console.log(imageDisplay);
 			components = (
 				<div>
-					<h1 className="animated bounceIn">CGI or Real?</h1>
+					<div className="title animated bounceIn">CGI or Real?</div>
+					<span className="animated bounceIn" style={{color:'#4db6ac'}}>CGI has been able to perform some amazing feets of hyperrealism. Test your skills at identifying what is fake and what is real.</span>
+					<br /><br />
                     <a className="waves-effect waves-light btn-large animated bounceIn" onClick={this.updateProgression}>Start</a>
 				</div>
 			);
 		}
 		// game screen
-		else if(state > 0 && state < 7) {
+		else if(state > 0 && state < 11) {
 			console.log('Progression: ' + this.state.progression);
 			console.log('Score: ' + this.state.score);
+			console.log('Score class: ' + scoreClass);
 			var image = this.getImage();
 			var cgiCorrect = (image.answer == 'cgi') ? true : false;
 			var realCorrect = (image.answer == 'real') ? true : false;
 
 			components = (
 				<div>
-					<img src={image.src} height='200px' width='200px'></img>
+					<img src={image.src} className='image' height='500px' width='500px'></img>
 					<br />
-					<div className="waves-effect waves-light btn" onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</div>
-					<div className="waves-effect waves-light btn" onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</div>
 					<br />
-					Image Answer: {image.answer}
-					<br />
-					<span id="score">Score: {score}</span>
-					<br />
-					Progression: {state}
+					<div className="waves-effect waves-light btn-large" onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</div>
+					<div className="waves-effect waves-light btn-large real" onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</div>
+					<span className={scoreClass}>Score: {score}</span>
 				</div>
 			);
 		}
@@ -111,8 +132,8 @@ var Main = React.createClass({
 		else {
 			components = (
 				<div>
-					<h1>You correctly guessed {score} out of 10!</h1>
-					<button onClick={this.resetProgression}>Restart</button>
+					<div className='title'>You correctly guessed {score} out of 10!</div>
+					 <a className="waves-effect waves-light btn-large" onClick={this.resetProgression}>Play Again</a>
 				</div>
 			);
 		}
