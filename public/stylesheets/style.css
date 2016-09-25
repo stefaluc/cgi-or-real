@@ -6,13 +6,19 @@ body {
 	background-color: #4db6ac;
 	display: flex;
 	justify-content: center;
-	align-items: center; 
+	align-items: center;
+	flex-direction: column;
 }
 
 .title {
 	color: #4db6ac;
 	font-variant: italic;
-	font-size: 48px;
+	font-size: 60px;
+}
+
+.welcome {
+	color: #4db6ac;
+	font-size: 18px;
 }
 
 #container {
@@ -23,56 +29,33 @@ body {
 	padding: 50px;
 	display: flex;
 	justify-content: center;
-	align-items: center; 
+	align-items: center;
+	text-align: center;
 }
 
-.score {
+#score {
 	position: absolute;
 	top: 20px;
 	right: 20px;
 	color: white;
 	font-size: 48px;
-	text-shadow: 0px 0px 10px rgba(0,0,0,0.4);
-}
-
-.correct { 
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	color: white;
-	font-size: 48px;
-	text-shadow: 0px 0px 10px rgba(0,0,0,0.4);
-	animation-name: correct;
-	animation-duration: 2s;
-}
-
-.incorrect {
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	color: white;
-	font-size: 48px;
-	text-shadow: 0px 0px 10px rgba(0,0,0,0.4);
-	animation-name: incorrect;
-	animation-duration: 2s;
-}
-
-@keyframes correct {
-	from {color: green;}
-	to {color: white;}
-}
-
-@keyframes incorrect {
-	from {color: red;}
-	to {color: white;}
 }
 
 .image {
 	box-shadow: 0px 0px 30px rgba(0,0,0,0.3);
-	border-radius: 15%;
-	border: solid 3px white;
+	border: solid 5px #4db6ac;
 }
 
 .real {
 	float: right;
+}
+
+.cgi {
+	float: left;
+}
+
+.git {
+	position: absolute;
+	top: 20px;
+	left: 20px;
 }
