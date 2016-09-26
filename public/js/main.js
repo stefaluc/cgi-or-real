@@ -1,3 +1,4 @@
+// images to randomly be displayed
 var imageDisplay = [
 	{src: 'images/00.jpg', answer: 'cgi'},
 	{src: 'images/01.jpg', answer: 'cgi'},
@@ -23,17 +24,12 @@ var imageDisplay = [
 	{src: 'images/21.jpg', answer: 'cgi'}
 ];
 
-var scoreClass = 'score';
-
+// shuffles images so they display randomly
 function shuffle(array) {
 	let counter = array.length;
-	// While there are elements in the array
 	while (counter > 0) {
-		// Pick a random index
 		let index = Math.floor(Math.random() * counter);
-		// Decrease counter by 1
 		counter--;
-		// And swap the last element with it
 		let temp = array[counter];
 		array[counter] = array[index];
 		array[index] = temp;
@@ -61,7 +57,6 @@ var Main = React.createClass({
 		for(var i = 0; i < imageDisplay.length; i++) {
 			temp.push(imageDisplay[i]);
 		}
-		scoreClass = 'score';
 		this.setState({
 			progression: 0,
 			score: 0,
@@ -70,8 +65,8 @@ var Main = React.createClass({
 	},
 
 	updateProgression: function() {
+		// animate score to red
 		if(this.state.progression > 0 && this.state.progression < 11) {
-			//scoreClass = 'incorrect';
 			document.getElementById('score').style.color = 'red';
 			$("#score").animate({color: "white"}, 1000);
 		}
@@ -81,7 +76,7 @@ var Main = React.createClass({
 	},
 
 	updateScore: function() {
-		//scoreClass = 'correct';
+		// animate score to green
 		document.getElementById('score').style.color = 'green';
 		$("#score").animate({color: "white"}, 1000);
 		this.setState({
@@ -104,7 +99,6 @@ var Main = React.createClass({
 		if(state === 0) {
 			components = (
 				<div>
-
 					<img src="images/logo.png" className="animated bounceIn"></img>
 					<div className="title animated bounceIn">CGI or Real?</div>
 					<span className="animated bounceIn welcome">CGI has been able to perform some amazing feets of hyperrealism. Test your skills at identifying what is fake and what is real.</span>
