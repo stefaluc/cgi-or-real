@@ -104,12 +104,13 @@ var Main = React.createClass({
 		if(state === 0) {
 			components = (
 				<div>
+
 					<img src="images/logo.png" className="animated bounceIn"></img>
 					<div className="title animated bounceIn">CGI or Real?</div>
 					<span className="animated bounceIn welcome">CGI has been able to perform some amazing feets of hyperrealism. Test your skills at identifying what is fake and what is real.</span>
 					<br /><br />
-                    <a className="waves-effect waves-light btn-large animated bounceIn" onClick={this.updateProgression}>Start</a>
-                    <br /><br />
+					<a className="waves-effect waves-light btn-large animated bounceIn" onClick={this.updateProgression}>Start</a>
+					<br /><br />
 				</div>
 			);
 		}
@@ -119,6 +120,8 @@ var Main = React.createClass({
 			var cgiCorrect = (image.answer == 'cgi') ? true : false;
 			var realCorrect = (image.answer == 'real') ? true : false;
 
+
+			console.log(image.src);
 			components = (
 				<div>
 					<img src={image.src} className='image' height='500px' width='500px'></img>
@@ -126,7 +129,7 @@ var Main = React.createClass({
 					<br />
 					<div className="waves-effect waves-light btn-large cgi" onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</div>
 					<div className="waves-effect waves-light btn-large real" onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</div>
-					<span id='score'>Score: {score}</span>
+					<span id='score' className='animated bounceIn'>Score: {score}</span>
 				</div>
 			);
 		}
