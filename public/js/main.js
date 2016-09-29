@@ -24,6 +24,8 @@ var imageDisplay = [
 	{src: 'images/21.jpg', answer: 'cgi'}
 ];
 
+var answer = 'INCORRECT';
+
 // shuffles images so they display randomly
 function shuffle(array) {
 	let counter = array.length;
@@ -67,8 +69,13 @@ var Main = React.createClass({
 	updateProgression: function() {
 		// animate score to red
 		if(this.state.progression > 0 && this.state.progression < 11) {
+			answer = 'INCORRECT';
+
 			document.getElementById('score').style.color = 'red';
-			$("#score").animate({color: "white"}, 1000);
+			$("#score").animate({color: "white"}, 1500);
+			document.getElementById('answer').style.color = 'red';
+			document.getElementById('answer').style.opacity = '1';
+			$("#answer").animate({opacity: "0"}, 1500);
 		}
 		this.setState({
 			progression: this.state.progression + 1
@@ -76,9 +83,13 @@ var Main = React.createClass({
 	},
 
 	updateScore: function() {
+		answer = 'CORRECT';
+		document.getElementById('answer').style.color = 'green';
+		document.getElementById('answer').style.opacity = '1';
+		$("#answer").animate({opacity: "0"}, 1500);
 		// animate score to green
 		document.getElementById('score').style.color = 'green';
-		$("#score").animate({color: "white"}, 1000);
+		$("#score").animate({color: "white"}, 1500);
 		this.setState({
 			progression: this.state.progression + 1,
  			score: this.state.score + 1
@@ -121,8 +132,11 @@ var Main = React.createClass({
 					<img src={image.src} className='image' height='500px' width='500px'></img>
 					<br />
 					<br />
-					<div className="waves-effect waves-light btn-large cgi" onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</div>
-					<div className="waves-effect waves-light btn-large real" onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</div>
+					<div id="buttons">
+						<div className="waves-effect waves-light btn-large cgi" onClick={cgiCorrect ? this.updateScore : this.updateProgression}>CGI</div>
+						<div id='answer'>{answer}</div>
+						<div className="waves-effect waves-light btn-large real" onClick={realCorrect ? this.updateScore : this.updateProgression}>Real</div>
+					</div>
 					<span id='score' className='animated bounceIn'>Score: {score}</span>
 				</div>
 			);

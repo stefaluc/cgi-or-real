@@ -47,14 +47,37 @@ body {
 
 .real {
 	float: right;
+	display: flex;
+	align-items: flex-end;
 }
 
 .cgi {
 	float: left;
+	display: flex;
+	justify-content: flex-start;
 }
 
 .git {
 	position: absolute;
 	top: 20px;
 	left: 20px;
+}
+
+#buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+#answer {
+	font-size: 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	opacity: 0;
+	margin-left: 10px;
+	margin-right: 10px;
 }
